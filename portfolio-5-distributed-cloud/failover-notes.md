@@ -25,4 +25,4 @@ For a ledger this matters. A confirmed transfer that vanishes in a failover is a
 I ran the promotion myself. In production, a tool such as Patroni watches the primary, promotes the replica, and moves traffic to it.
 
 ## Why the old primary stays down
-If it came back, two servers would both
+If it came back, two servers would both accept writes (split brain) and the ledgers would drift apart. It has to be rebuilt as a replica of the new primary before it rejoins.
