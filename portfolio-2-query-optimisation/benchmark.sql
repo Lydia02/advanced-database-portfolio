@@ -68,14 +68,14 @@ BEGIN
         LIMIT 10 $q$);
 END $$ LANGUAGE plpgsql;
 
--- BEFORE: no indexes
+-- Before: no indexes
 DROP INDEX IF EXISTS idx_transactions_wallet_created;
 DROP INDEX IF EXISTS idx_transfers_from_wallet;
 DROP INDEX IF EXISTS idx_orders_wallet_created;
 ANALYZE;
 SELECT bench_all('before');
 
--- AFTER: indexes added
+-- After: indexes added
 CREATE INDEX idx_transactions_wallet_created
     ON transactions (wallet_id, created_at DESC, txn_id DESC);
 CREATE INDEX idx_transfers_from_wallet
@@ -85,7 +85,7 @@ CREATE INDEX idx_orders_wallet_created
 ANALYZE;
 SELECT bench_all('after');
 
--- RESULT TABLE (screenshot this)
+-- Summary: fastest run per query, before and after
 SELECT label,
        max(scan) FILTER (WHERE phase = 'before')                      AS scan_before,
        round(min(exec_ms) FILTER (WHERE phase = 'before'), 3)         AS ms_before,

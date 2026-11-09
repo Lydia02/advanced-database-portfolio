@@ -124,7 +124,7 @@ GROUP BY wallet_id, product_id;
 
 ANALYZE;
 
--- Row counts (screenshot these)
+-- Row counts
 SELECT 'users' AS tbl, count(*) FROM users
 UNION ALL SELECT 'wallets', count(*) FROM wallets
 UNION ALL SELECT 'products', count(*) FROM products
