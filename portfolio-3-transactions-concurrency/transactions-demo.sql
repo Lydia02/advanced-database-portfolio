@@ -105,5 +105,5 @@ FROM wallets w JOIN transactions t ON t.wallet_id = w.wallet_id
 WHERE w.wallet_id IN (4500, 777)
 GROUP BY w.wallet_id, w.balance ORDER BY w.wallet_id;
 
--- RESULT (screenshot this)
+-- Results
 SELECT step, detail FROM txn_demo_log ORDER BY id;
